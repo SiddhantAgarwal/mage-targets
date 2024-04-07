@@ -8,7 +8,7 @@ import (
 type Go mg.Namespace
 
 func (Go) Build() error {
-	return sh.Run("go", "build", "-o", "./bin", "./...")
+	return sh.Run("go", "build", "-v", "-o", "./bin", "./...")
 }
 
 func (Go) Test() error {
@@ -17,4 +17,12 @@ func (Go) Test() error {
 
 func (Go) Fmt() error {
 	return sh.Run("go", "fmt", "./...")
+}
+
+func (Go) Vet() error {
+	return sh.Run("go", "vet", "-v", "./...")
+}
+
+func (Go) Tidy() error {
+	return sh.Run("go", "mod", "tidy", "-v")
 }
